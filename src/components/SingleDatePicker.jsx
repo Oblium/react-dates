@@ -248,7 +248,11 @@ class SingleDatePicker extends React.PureComponent {
 
   onFocusOut(e) {
     const { onFocusChange } = this.props;
-    if (this.dayPickerContainer.contains(e.relatedTarget || e.target)) return;
+    const t = e.target;
+    const { relatedTarget } = e;
+    const v1 = this.dayPickerContainer.contains(relatedTarget || t);
+    const v2 = this.dayPickerContainer.contains(t);
+    if (v1 || v2) return;
     onFocusChange({ focused: false });
   }
 
